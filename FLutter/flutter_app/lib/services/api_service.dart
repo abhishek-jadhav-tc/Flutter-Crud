@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // static const String baseUrl = 'http://localhost:3000';
-  static const String baseUrl = 'https://flutter-crud.apps.thecontrast.in';
+  static const String baseUrl = 'https://flutter.undercontrol.in';
 
 
   static Future<List<User>> getUsers() async {
