@@ -1,23 +1,18 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const { connectDB, User } = require('./db');
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB
 connectDB();
 
-// Routes
 app.get('/', (req, res) => {
   res.send('Server is running 🚀');
 });
 
-// Create user
 app.post('/users', async (req, res) => {
   try {
     const user = new User(req.body);
@@ -28,7 +23,6 @@ app.post('/users', async (req, res) => {
   }
 });
 
-// Get all users
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find();
@@ -38,7 +32,6 @@ app.get('/users', async (req, res) => {
   }
 });
 
-// ✅ Update user by ID
 app.put('/users/:id', async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -55,7 +48,6 @@ app.put('/users/:id', async (req, res) => {
   }
 });
 
-// ✅ Delete user by ID
 app.delete('/users/:id', async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
@@ -68,7 +60,6 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
-// Server (Coolify uses PORT environment variable)
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
